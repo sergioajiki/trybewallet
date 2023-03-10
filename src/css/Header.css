@@ -1,7 +1,6 @@
 .header {
-  /* background-color: aqua; */
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-around;
 }
 
@@ -17,7 +16,6 @@
 }
 .expenses {
   align-items: center;    
-  /* background-color: blueviolet; */
   color: #003BE5;
   display: flex;
   font-size: 1rem;

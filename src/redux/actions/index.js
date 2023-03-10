@@ -1,4 +1,6 @@
 // Coloque aqui suas actions
+import { getCoin } from '../../service/Api';
+
 export const SEND_LOGIN_STATE = 'SEND_LOGIN_STATE';
 // export const SEND_WALLET_STATE = 'SEND_WALLET_STATE';
 
@@ -7,9 +9,9 @@ export const sendLoginInfo = (loginInfo) => ({
   payload: loginInfo,
 });
 
-// export const sendWalletInfo = (walletInfo) => ({
-//   type: SEND_LOGIN_STATE,
-//   payload: walletInfo,
-// });
+export const coinsList = async () => {
+  const coinsCode = await getCoin();
+  console.log(coinsCode);
+};
 
-export default { sendLoginInfo };
+export default { sendLoginInfo, coinsList };
