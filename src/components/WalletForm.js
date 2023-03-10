@@ -81,12 +81,12 @@ class WalletForm extends Component {
               // onChange={ onChange }
             >
               {
-                currencies.map((tag, index) => (
+                currencies.map((codeCoin, index) => (
                   <option
                     key={ index }
-                    value={ [tag] }
+                    value={ [codeCoin] }
                   >
-                    {[tag]}
+                    {[codeCoin]}
                   </option>
                 ))
               }
