@@ -85,7 +85,7 @@ class Login extends React.Component {
           </label>
 
           <button
-            type="submit"
+            type="button"
             disabled={ this.isLogButtonDisabled() }
             onClick={ this.accessWallet }
           >

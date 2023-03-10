@@ -10,8 +10,15 @@ export const sendLoginInfo = (loginInfo) => ({
 });
 
 export const coinsList = async () => {
-  const coinsCode = await getCoin();
-  console.log(coinsCode);
+  const coins = await getCoin();
+  const result = Object.values(coins);
+  // console.log(coins);
+  console.log('array', result);
+  const coinList = result
+    .filter((element) => element.codein !== 'BRLT')
+    .map((e) => e.code);
+  console.log(coinList);
+  // const coinListCode = await coins.map((coin) => coin.code);
 };
 
 export default { sendLoginInfo, coinsList };

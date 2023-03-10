@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { coinsList } from '../redux/actions';
 
 class WalletForm extends Component {
+  state = {
+    tagList: ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'],
+  };
+
   componentDidMount() {
     coinsList();
   }
 
   render() {
     // coinsList();
+    const { tagList } = this.state;
 
     return (
       <div>
@@ -53,16 +58,34 @@ class WalletForm extends Component {
           <label htmlFor="tag">
             Categoria da Despesa
             <select
-              data-testid="tag-input"
-              id="tag"
               name="tag"
+              id="tag"
+              // onChange={ onChange }
             >
-              <option>Alimentação</option>
-              <option>Lazer</option>
-              <option>Trabalho</option>
-              <option>Transporte</option>
-              <option>Saúde</option>
+              {
+                tagList.map((tag, index) => (
+                  <option
+                    key={ index }
+                    value={ [tag] }
+                  >
+                    {[tag]}
+                  </option>
+                ))
+              }
             </select>
+            {/* <select
+                data-testid="tag-input"
+                id="tag"
+                name="tag"
+                value={}
+              >
+                <option>Alimentação</option>
+                <option>Lazer</option>
+                <option>Trabalho</option>
+                <option>Transporte</option>
+                <option>Saúde</option>
+              </select> */}
+            {/* </label> */}
           </label>
           <br />
           <label htmlFor="">
