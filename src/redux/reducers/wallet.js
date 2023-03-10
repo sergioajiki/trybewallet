@@ -1,6 +1,6 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 
-import { SEND_WALLET_STATE } from '../actions';
+import { SEND_COIN_LIST_CODE } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -9,6 +9,16 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
 
-const wallet = (state = INITIAL_STATE) => state;
+const wallet = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+  case SEND_COIN_LIST_CODE: {
+    return {
+      ...state,
+      currencies: action.payload,
+    };
+  }
+  default: return state;
+  }
+};
 
 export default wallet;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { coinsList } from '../redux/actions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { listaDeMoedas } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -7,12 +9,15 @@ class WalletForm extends Component {
   };
 
   componentDidMount() {
-    coinsList();
+    const { dispatch } = this.props;
+    console.log(dispatch);
+    listaDeMoedas(dispatch);
   }
 
   render() {
     // coinsList();
     const { tagList } = this.state;
+    const { currencies } = this.props;
 
     return (
       <div>
@@ -31,6 +36,7 @@ class WalletForm extends Component {
             />
           </label>
           <br />
+
           <label htmlFor="valueExpense">
             Valor
             <input
@@ -44,20 +50,11 @@ class WalletForm extends Component {
             />
           </label>
           <br />
-          {/* <label htmlFor="">
-            <input
-              data-testid="currency-input"
-              type=""
-              id=""
-              name=""
-              value={}
-              onChange={}
-              required
-            />
-          </label> */}
+
           <label htmlFor="tag">
             Categoria da Despesa
             <select
+              data-testid="tag-input"
               name="tag"
               id="tag"
               // onChange={ onChange }
@@ -73,19 +70,28 @@ class WalletForm extends Component {
                 ))
               }
             </select>
-            {/* <select
-                data-testid="tag-input"
-                id="tag"
-                name="tag"
-                value={}
-              >
-                <option>Alimentação</option>
-                <option>Lazer</option>
-                <option>Trabalho</option>
-                <option>Transporte</option>
-                <option>Saúde</option>
-              </select> */}
-            {/* </label> */}
+          </label>
+
+          <label htmlFor="tag">
+            Moeda
+            <select
+              data-testid="currency-input"
+              name="tag"
+              id="tag"
+              // onChange={ onChange }
+            >
+              {
+                currencies.map((tag, index) => (
+                  <option
+                    key={ index }
+                    value={ [tag] }
+                  >
+                    {[tag]}
+                  </option>
+                ))
+              }
+            </select>
+
           </label>
           <br />
           <label htmlFor="">
@@ -107,5 +113,12 @@ class WalletForm extends Component {
     );
   }
 }
+WalletForm.propTypes = {
+  dispatch: PropTypes.func,
+}.isRequired;
 
-export default WalletForm;
+const mapStateToProps = (state) => ({
+  currencies: state.wallet.currencies,
+});
+
+export default connect(mapStateToProps)(WalletForm);
