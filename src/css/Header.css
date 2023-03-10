@@ -1,0 +1,28 @@
+.header {
+  /* background-color: aqua; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.logo {
+  color: #003BE5;
+  font-size: 2,5rem;
+  font-weight: 300;
+}
+.chunk2 {
+  color: #2FC18C;
+  font-size: 2,5rem;
+  font-weight: 900;
+}
+.expenses {
+  align-items: center;    
+  /* background-color: blueviolet; */
+  color: #003BE5;
+  display: flex;
+  font-size: 1rem;
+}
+
+.userEmail {
+  color: #2FC18C;
+}
