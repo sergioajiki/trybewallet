@@ -1,85 +1,105 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { listaDeMoedas } from '../redux/actions';
+import { exchangeRatesList, listaDeMoedas } from '../redux/actions';
+import { tagList } from '../service/Api';
+import '../css/WalletForm.css';
 
 class WalletForm extends Component {
   state = {
-    tagList: ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'],
+    value: 0,
+    description: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
-    console.log(dispatch);
+    // console.log(dispatch);
     listaDeMoedas(dispatch);
+    exchangeRatesList();
   }
+
+  handleChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [name]: value,
+    });
+  };
 
   render() {
     // coinsList();
-    const { tagList } = this.state;
+    const { description, value, currency, method, tag } = this.state;
     const { currencies } = this.props;
 
     return (
-      <div>
-        WalletForm
-        <form>
-          <label htmlFor="descriptionExpense">
+      <form className="form">
+        <span className="descAndTag">
+          <label className="label" htmlFor="descriptionExpense">
             Descrição da Despesa
             <input
               data-testid="description-input"
               type="text"
               id="descriptionExpense"
-              name="descriptionExpense"
-              // value={}
-              // onChange={}
+              name="description"
+              value={ description }
+              onChange={ this.handleChange }
               required
+              className="input_description"
             />
           </label>
-          <br />
 
-          <label htmlFor="valueExpense">
-            Valor
-            <input
-              data-testid="value-input"
-              type="number"
-              id="valueExpense"
-              name="valueExpense"
-              // value={}
-              // onChange={}
-              required
-            />
-          </label>
-          <br />
-
-          <label htmlFor="tag">
+          <label className="label" htmlFor="tag">
             Categoria da Despesa
             <select
               data-testid="tag-input"
               name="tag"
               id="tag"
-              // onChange={ onChange }
+              onChange={ this.handleChange }
+              className="select_tag"
             >
+              <option>{ tag }</option>
               {
-                tagList.map((tag, index) => (
+                tagList.map((cat, index) => (
                   <option
                     key={ index }
-                    value={ [tag] }
+                    value={ [cat] }
                   >
-                    {[tag]}
+                    {[cat]}
                   </option>
                 ))
               }
             </select>
           </label>
+        </span>
 
-          <label htmlFor="tag">
+        <span className="ValorEMethod">
+          <label className="label" htmlFor="valueExpense">
+            Valor
+            <input
+              data-testid="value-input"
+              type="number"
+              id="valueExpense"
+              name="value"
+              value={ value }
+              onChange={ this.handleChange }
+              required
+              className="valor"
+            />
+          </label>
+
+          <label className="label" htmlFor="tag">
             Moeda
             <select
               data-testid="currency-input"
-              name="tag"
+              name="currency"
               id="tag"
-              // onChange={ onChange }
+              onChange={ this.handleChange }
+              className="currency"
             >
+              <option>{ currency }</option>
               {
                 currencies.map((codeCoin, index) => (
                   <option
@@ -91,25 +111,28 @@ class WalletForm extends Component {
                 ))
               }
             </select>
-
           </label>
-          <br />
-          <label htmlFor="">
-            Metodo de Pagamento
+
+          <label className="label" htmlFor="method">
+            Método de Pagamento
             <select
               data-testid="method-input"
-              id="tag"
-              name="tag"
+              id="method"
+              name="method"
+              onChange={ this.handleChange }
+              className="method"
             >
+              <option>{ method }</option>
               <option>Dinheiro</option>
               <option>Cartão de crédito</option>
               <option>Cartão de débito</option>
             </select>
           </label>
+        </span>
 
-        </form>
+        <button className="button">Adicionar despesa</button>
+      </form>
 
-      </div>
     );
   }
 }

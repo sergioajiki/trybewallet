@@ -3,3 +3,5 @@ export async function getCoin() {
   const data = await response.json();
   return data;
 }
+
+export const tagList = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];

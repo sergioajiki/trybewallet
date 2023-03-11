@@ -1,0 +1,96 @@
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.label {
+	color: #003be5;
+	font-weight: 700;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.descAndTag {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 90%;
+}
+
+.ValorEMethod {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+  width: 90%;
+}
+
+.input_description {
+	border: 1px solid #003be5;
+	border-radius: 5px;
+	color: #003be5;
+	font-weight: 400;
+	height: 30px;
+	margin-left: 5px;
+  width: 300px;
+}
+
+.select_tag {
+	border: 1px solid #003be5;
+	border-radius: 5px;
+	height: 30px;
+	margin-left: 5px;
+  width: 155px;
+	color: #003be5;
+	font-size: 1rem;
+	font-weight: 300;
+}
+
+.currency {
+	border: 1px solid #003be5;
+	border-radius: 5px;
+	color: #003be5;
+	height: 30px;
+	font-size: 1rem;
+	font-weight: 300;
+	margin-left: 5px;
+	width: 90px;
+}
+
+.method {
+	border: 1px solid #003be5;
+	border-radius: 5px;
+	color: #003be5;
+	font-size: 1rem;
+	font-weight: 300;
+	height: 30px;
+	margin-left: 5px;
+	width: 230px;
+}
+
+.valor {
+	border: 1px solid #003be5;
+	border-radius: 5px;
+	color: #003be5;
+	font-size: 1rem;
+	font-weight: 300;
+	height: 30px;
+	margin-left: 5px;
+	width: 160px;
+}
+
+.button {
+	background-color: #2fc18c;
+	border: 1px solid #2fc18c;
+	border-radius: 5px;
+	color: white;
+	font-size: 1rem;
+	font-weight: 700;
+	margin: 20px;
+	height: 40px;
+	width: 330px;
+	}
