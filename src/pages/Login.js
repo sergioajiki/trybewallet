@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sendLoginInfo } from '../redux/actions';
+import '../css/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -55,45 +56,52 @@ class Login extends React.Component {
     const { email, password } = this.state;
     // const { history, dispatch } = this.props;
     return (
-      <div>
-        <p>Login, To na page do Login</p>
-        <h1>Trybe Wallet</h1>
-        <form>
-          <label htmlFor="email">
-            <input
-              data-testid="email-input"
-              id="email"
-              type="email"
-              name="email"
-              value={ email }
-              placeholder="E-mail"
-              onChange={ this.handleChange }
-              required
-            />
-          </label>
-          <label htmlFor="password">
-            <input
-              data-testid="password-input"
-              id="password"
-              type="text"
-              name="password"
-              value={ password }
-              placeholder="Senha"
-              onChange={ this.handleChange }
-              required
-            />
-          </label>
+      <div className="pageLogin">
+        <div className="loginComponent">
 
-          <button
-            type="button"
-            disabled={ this.isLogButtonDisabled() }
-            onClick={ this.accessWallet }
-          >
-            Entrar
-          </button>
+          <form className="formLogin">
+            <h1 className="logo">
+              Trybe
+              <span className="chunk2">Wallet</span>
+            </h1>
+            <label htmlFor="email">
+              <input
+                data-testid="email-input"
+                id="email"
+                type="email"
+                name="email"
+                value={ email }
+                placeholder="E-mail"
+                onChange={ this.handleChange }
+                required
+                className="inputLogin"
+              />
+            </label>
+            <label htmlFor="password">
+              <input
+                data-testid="password-input"
+                id="password"
+                type="text"
+                name="password"
+                value={ password }
+                placeholder="Senha"
+                onChange={ this.handleChange }
+                required
+                className="inputLogin"
+              />
+            </label>
 
-        </form>
+            <button
+              type="button"
+              disabled={ this.isLogButtonDisabled() }
+              onClick={ this.accessWallet }
+              className="buttonLogin"
+            >
+              Entrar
+            </button>
 
+          </form>
+        </div>
       </div>
     );
   }
