@@ -3,6 +3,7 @@ import { getCoin } from '../../service/Api';
 
 export const SEND_LOGIN_STATE = 'SEND_LOGIN_STATE';
 export const SEND_COIN_LIST_CODE = 'SEND_COIN_LIST_CODE';
+export const SAVE_EXPENSE = 'SAVE_EXPENSE';
 // export const SEND_WALLET_STATE = 'SEND_WALLET_STATE';
 
 export const sendLoginInfo = (loginInfo) => ({
@@ -15,7 +16,12 @@ export const sendCoinListCode = (payload) => ({
   payload,
 });
 
-export const listaDeMoedas = async (dispatch) => {
+export const saveExpense = (expense) => ({
+  type: SAVE_EXPENSE,
+  payload: expense,
+});
+
+export const listaDeMoedas = () => async (dispatch) => {
   const coins = await getCoin();
   const result = Object.values(coins);
   // console.log(coins);
@@ -33,5 +39,6 @@ export const exchangeRatesList = async () => {
   const result = Object.values(coins);
   const exchangeRate = result
     .filter((element) => element.codein !== 'BRLT');
-  console.log(exchangeRate);
+  // console.log('exchange', exchangeRate);
+  return exchangeRate;
 };

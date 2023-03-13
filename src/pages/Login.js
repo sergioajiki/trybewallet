@@ -50,9 +50,9 @@ class Login extends React.Component {
   };
 
   render() {
-    this.validateEmail();
-    this.validatePassword();
-    this.isLogButtonDisabled();
+    // this.validateEmail();
+    // this.validatePassword();
+    // this.isLogButtonDisabled();
     const { email, password } = this.state;
     // const { history, dispatch } = this.props;
     return (

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { exchangeRatesList, listaDeMoedas } from '../redux/actions';
+import { exchangeRatesList, listaDeMoedas, saveExpense } from '../redux/actions';
 import { tagList } from '../service/Api';
 import '../css/WalletForm.css';
 
 class WalletForm extends Component {
   state = {
+    id: 0,
     value: 0,
     description: '',
     currency: 'USD',
@@ -17,9 +18,33 @@ class WalletForm extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     // console.log(dispatch);
-    listaDeMoedas(dispatch);
-    exchangeRatesList();
+    // listaDeMoedas(dispatch);
+    dispatch(listaDeMoedas());
+    // exchangeRatesList();
   }
+
+  saveInfoExpenses = async (e) => {
+    e.preventDefault();
+
+    const { dispatch } = this.props;
+    // const { description } = this.state;
+    const exchangeList = await exchangeRatesList();
+    console.log(exchangeList);
+    console.log(this.state);
+    // const { ...state } = this.state;
+    // console.log(state);
+    const expense = {
+      ...this.state,
+      exchangeRates: exchangeList,
+    };
+    dispatch(saveExpense(expense));
+    this.setState((prevState) => ({
+      id: prevState.id + 1,
+      value: '',
+      description: '',
+    }));
+    console.log(expense);
+  };
 
   handleChange = ({ target }) => {
     const { name } = target;
@@ -31,6 +56,7 @@ class WalletForm extends Component {
 
   render() {
     // coinsList();
+    // this.saveInfoExpenses();
     const { description, value, currency, method, tag } = this.state;
     const { currencies } = this.props;
 
@@ -59,8 +85,9 @@ class WalletForm extends Component {
               id="tag"
               onChange={ this.handleChange }
               className="select_tag"
+              value={ tag }
             >
-              <option>{ tag }</option>
+              {/* <option>{ tag }</option> */}
               {
                 tagList.map((cat, index) => (
                   <option
@@ -98,8 +125,9 @@ class WalletForm extends Component {
               id="tag"
               onChange={ this.handleChange }
               className="currency"
+              value={ currency }
             >
-              <option>{ currency }</option>
+              {/* <option>{ currency }</option> */}
               {
                 currencies.map((codeCoin, index) => (
                   <option
@@ -121,8 +149,9 @@ class WalletForm extends Component {
               name="method"
               onChange={ this.handleChange }
               className="method"
+              value={ method }
             >
-              <option>{ method }</option>
+              {/* <option>{ method }</option> */}
               <option>Dinheiro</option>
               <option>Cartão de crédito</option>
               <option>Cartão de débito</option>
@@ -130,7 +159,12 @@ class WalletForm extends Component {
           </label>
         </span>
 
-        <button className="button">Adicionar despesa</button>
+        <button
+          className="button"
+          onClick={ this.saveInfoExpenses }
+        >
+          Adicionar despesa
+        </button>
       </form>
 
     );
@@ -142,6 +176,7 @@ WalletForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps)(WalletForm);

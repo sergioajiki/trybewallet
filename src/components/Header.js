@@ -4,7 +4,18 @@ import { connect } from 'react-redux';
 import '../css/Header.css';
 
 class Header extends Component {
+  totalExpenses = () => {
+    const { expenses } = this.props;
+    const total = expenses
+      .reduce((acc, curr) => (
+        acc + Number(curr.value)
+        // console.log('esse e o curr', curr, 'acc', acc)
+      ), 0);
+    console.log(total);
+  };
+
   render() {
+    this.totalExpenses();
     const { email } = this.props;
     return (
       <div className="header">
@@ -34,6 +45,7 @@ class Header extends Component {
 
 Header.propTypes = {
   email: PropTypes.string,
+  expenses: PropTypes.string,
 }.isRequired;
 
 const mapStateToProps = (state) => ({
