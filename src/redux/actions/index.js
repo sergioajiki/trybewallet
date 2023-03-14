@@ -36,9 +36,6 @@ export const listaDeMoedas = () => async (dispatch) => {
 
 export const exchangeRatesList = async () => {
   const coins = await getCoin();
-  const result = Object.values(coins);
-  const exchangeRate = result
-    .filter((element) => element.codein !== 'BRLT');
-  // console.log('exchange', exchangeRate);
-  return exchangeRate;
+  console.log(coins);
+  return coins;
 };

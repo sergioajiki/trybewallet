@@ -4,19 +4,21 @@ import { connect } from 'react-redux';
 import '../css/Header.css';
 
 class Header extends Component {
-  totalExpenses = () => {
-    const { expenses } = this.props;
-    const total = expenses
-      .reduce((acc, curr) => (
-        acc + Number(curr.value)
-        // console.log('esse e o curr', curr, 'acc', acc)
-      ), 0);
-    console.log(total);
-  };
-
   render() {
-    this.totalExpenses();
+    // this.totalExpenses();
+    const totalExpenses = () => {
+      const { expenses } = this.props;
+      const total = expenses
+        .reduce((acc, curr) => (
+          acc + Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask)
+          // console.log('esse e o curr', curr, 'acc', acc)
+        ), 0);
+      console.log(total);
+      return total;
+    };
+
     const { email } = this.props;
+    // const { total } = this.state;
     return (
       <div className="header">
 
@@ -27,7 +29,7 @@ class Header extends Component {
 
         <span className="expenses">
           <p>Total de despesas:</p>
-          <span data-testid="total-field">0</span>
+          <span data-testid="total-field">{ totalExpenses().toFixed(2) }</span>
           <span data-testid="header-currency-field">BRL</span>
         </span>
 
