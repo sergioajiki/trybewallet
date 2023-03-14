@@ -5,15 +5,15 @@
   box-shadow: -4px 9px 13px rgba(3, 107, 82, 0.3);
   padding-bottom: 75px;
   padding-top: 50px;
-  }
+}
 
 .all {
   color: white;
 }
 
 .tableHead {
-  border-bottom: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
   font-size: 0.8rem;
   font-weight: 700;
   height: 26.6px;
@@ -22,7 +22,7 @@
 }
 
 .tableHead1 {
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid white;
   font-size: 0.8rem;
   font-weight: 700;
   height: 26.6px;
