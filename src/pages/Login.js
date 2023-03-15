@@ -21,7 +21,7 @@ class Login extends React.Component {
     const { email } = this.state;
     const emailCheck = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
     const isValidEmail = emailCheck.test(email);
-    console.log({ email }, isValidEmail);
+    // console.log({ email }, isValidEmail);
     return isValidEmail;
   };
 
@@ -29,14 +29,14 @@ class Login extends React.Component {
     const { password } = this.state;
     const minLengthPassword = 6;
     const passwordCheck = password.length >= minLengthPassword;
-    console.log({ password }, passwordCheck);
+    // console.log({ password }, passwordCheck);
     return passwordCheck;
   };
 
   isLogButtonDisabled = () => {
     // const isLogButtonDisabled = (this.validateEmail() || this.validatePassword());
     const isLogButtonDisabled = (this.validateEmail() && this.validatePassword());
-    console.log(isLogButtonDisabled);
+    // console.log(isLogButtonDisabled);
     return !isLogButtonDisabled;
   };
 

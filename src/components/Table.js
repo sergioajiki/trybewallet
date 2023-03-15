@@ -22,25 +22,11 @@ class Table extends Component {
   };
 
   editExpense = (id) => {
-    const { dispatch, editor, idToEdit } = this.props;
+    const { dispatch } = this.props;
     // console.log(id);
     // console.log('clicou no edit', editor);
     dispatch(requestEdit(id));
-    console.log('id', id, 'idToEdit', idToEdit, 'editor', editor);
-    // console.log(this.state);
-
-    // const filteredExpense = expenses
-    //   .filter((expense) => expense.id === id);
-    // console.log(filteredExpense[0].value);
-    // this.setState({
-    //   value: filteredExpense[0].value,
-    //   description: filteredExpense[0].description,
-    //   currency: filteredExpense[0].currency,
-    //   method: filteredExpense[0].method,
-    //   tag: filteredExpense[0].tag,
-    // }, () => console.log('state logo apos', this.state));
-    // console.log(filteredExpense);
-    // console.log('state', this.state);
+    // console.log('id', id, 'idToEdit', idToEdit, 'editor', editor);
   };
 
   render() {
@@ -104,16 +90,18 @@ class Table extends Component {
 
                   <td>
                     <button
-                      data-testid="delete-btn"
-                      onClick={ () => this.deleteExpense(expense.id) }
-                    >
-                      Excluir
-                    </button>
-                    <button
                       data-testid="edit-btn"
                       onClick={ () => this.editExpense(expense.id) }
+                      className="buttonEditar"
                     >
                       Editar
+                    </button>
+                    <button
+                      data-testid="delete-btn"
+                      onClick={ () => this.deleteExpense(expense.id) }
+                      className="buttonExcluir"
+                    >
+                      Excluir
                     </button>
                   </td>
                 </tr>

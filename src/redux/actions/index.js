@@ -7,7 +7,6 @@ export const SAVE_EXPENSE = 'SAVE_EXPENSE';
 export const DEL_EXPENSE = 'DEL_EXPENSE';
 export const REQUEST_EDIT = 'REQUEST_EDIT';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
-// export const SEND_WALLET_STATE = 'SEND_WALLET_STATE';
 
 export const sendLoginInfo = (loginInfo) => ({
   type: SEND_LOGIN_STATE,

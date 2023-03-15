@@ -62,5 +62,18 @@
   font-size: 1rem;
   font-weight: 700;
   height: 46px;
+  transition-duration: 0.4s ;
+  width: 336px;
+}
+
+.buttonLogin:hover {
+  background: #2f63ff;
+  border: 1px solid #2f63ff;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 46px;
   width: 336px;
 }
