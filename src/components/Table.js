@@ -1,20 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { delExpense } from '../redux/actions';
+import { delExpense, requestEdit } from '../redux/actions';
 import '../css/Table.css';
 
 class Table extends Component {
+  // state = {
+  //   id: 0,
+  //   value: 0,
+  //   description: '',
+  //   currency: 'USD',
+  //   method: 'Dinheiro',
+  //   tag: 'Alimentação',
+  // };
+
   deleteExpense = (id) => {
     const { dispatch } = this.props;
-    console.log(id);
-    console.log('clicou no delete');
+    // console.log(id);
+    // console.log('clicou no delete');
     dispatch(delExpense(id));
+  };
+
+  editExpense = (id) => {
+    const { dispatch, editor, idToEdit } = this.props;
+    // console.log(id);
+    // console.log('clicou no edit', editor);
+    dispatch(requestEdit(id));
+    console.log('id', id, 'idToEdit', idToEdit, 'editor', editor);
+    // console.log(this.state);
+
+    // const filteredExpense = expenses
+    //   .filter((expense) => expense.id === id);
+    // console.log(filteredExpense[0].value);
+    // this.setState({
+    //   value: filteredExpense[0].value,
+    //   description: filteredExpense[0].description,
+    //   currency: filteredExpense[0].currency,
+    //   method: filteredExpense[0].method,
+    //   tag: filteredExpense[0].tag,
+    // }, () => console.log('state logo apos', this.state));
+    // console.log(filteredExpense);
+    // console.log('state', this.state);
   };
 
   render() {
     const { expenses } = this.props;
-    console.log(expenses);
+    // console.log(expenses);
     return (
       <div className="tableComponent">
         <table>
@@ -80,6 +111,7 @@ class Table extends Component {
                     </button>
                     <button
                       data-testid="edit-btn"
+                      onClick={ () => this.editExpense(expense.id) }
                     >
                       Editar
                     </button>

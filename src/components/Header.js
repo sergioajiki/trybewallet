@@ -13,7 +13,7 @@ class Header extends Component {
           acc + Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask)
           // console.log('esse e o curr', curr, 'acc', acc)
         ), 0);
-      console.log(total);
+      // console.log(total);
       return total;
     };
 

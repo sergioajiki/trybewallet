@@ -5,6 +5,8 @@ export const SEND_LOGIN_STATE = 'SEND_LOGIN_STATE';
 export const SEND_COIN_LIST_CODE = 'SEND_COIN_LIST_CODE';
 export const SAVE_EXPENSE = 'SAVE_EXPENSE';
 export const DEL_EXPENSE = 'DEL_EXPENSE';
+export const REQUEST_EDIT = 'REQUEST_EDIT';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 // export const SEND_WALLET_STATE = 'SEND_WALLET_STATE';
 
 export const sendLoginInfo = (loginInfo) => ({
@@ -23,8 +25,19 @@ export const saveExpense = (expense) => ({
 });
 
 export const delExpense = (id) => ({
-  type: 'DEL_EXPENSE',
+  type: DEL_EXPENSE,
   payload: id,
+});
+
+export const requestEdit = (id) => ({
+  type: REQUEST_EDIT,
+  payload: id,
+});
+
+export const editExpense = (changes) => ({
+  type: EDIT_EXPENSE,
+  payload: changes,
+
 });
 
 export const listaDeMoedas = () => async (dispatch) => {
