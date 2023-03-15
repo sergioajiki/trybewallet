@@ -44,7 +44,7 @@ class WalletForm extends Component {
   editInfoExpenses = (event) => {
     event.preventDefault();
     const { dispatch, idToEdit } = this.props;
-    console.log(idToEdit);
+    // console.log(idToEdit);
     const expense = {
       ...this.state,
       id: idToEdit,

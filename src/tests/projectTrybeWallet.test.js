@@ -1,5 +1,5 @@
 import React from 'react';
-import { getNodeText, screen } from '@testing-library/react';
+import { getNodeText, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 import App from '../App';
@@ -41,6 +41,7 @@ describe('testa o componente Login', () => {
     expect(pathname).toBe('/carteira');
   });
 });
+
 describe('testa o componete walletForm', () => {
   test('testa se os campos do formulario são renderizados', () => {
     renderWithRouterAndRedux(<WalletForm />);
@@ -49,6 +50,7 @@ describe('testa o componete walletForm', () => {
     const fieldTag = screen.getByTestId('tag-input');
     const fieldValue = screen.getByTestId('value-input');
     const fieldMethod = screen.getByTestId('method-input');
+
     expect(fieldDescription).toBeInTheDocument();
     expect(fieldTag).toBeInTheDocument();
     expect(fieldValue).toBeInTheDocument();
@@ -105,22 +107,55 @@ describe('teste de operação', () => {
     const fieldCurrency = await screen.findByTestId('currency-input');
     const buttonAdicionar = screen.getByRole('button', { name: /Adicionar despesa/i });
 
-    // console.log('valor do input', fieldDescription.ariaPlaceholder);
     userEvent.type(fieldDescription, 'supermercado');
     userEvent.type(fieldTag, 'Alimentação');
     userEvent.type(fieldValue, '100');
     userEvent.type(fieldMethod, 'Dinheiro');
-    userEvent.type(fieldCurrency, 'JPY');
+    userEvent.type(fieldCurrency, 'USD');
+    // userEvent.selectOptions((fieldCurrency), ['JPY']);
     userEvent.click(buttonAdicionar);
 
-    // const fieldDescriptionAfter = await screen.findByTestId('description-input');
-    // expect(fieldDescriptionAfter).toHaveValue(' ')
+    // waitFor(() => {
+    //   const fieldDescriptionAfter = screen.findByTestId('description-input');
+    //   expect(fieldDescriptionAfter).toHaveValue('');
+    // });
+
     const buttonEditar = await screen.findByRole('button', { name: /Editar/i });
     const buttonExcluir = await screen.findByRole('button', { name: /Excluir/i });
     expect(buttonEditar).toBeVisible();
     expect(buttonExcluir).toBeVisible();
+
+    const cellDescription = await screen.findByRole('cell', { name: /supermercado/i });
+    const cellTag = await screen.findByRole('cell', { name: /Alimentação/i });
+    const cellValue = await screen.findByRole('cell', { name: '100.00' });
+    const cellMethod = await screen.findByRole('cell', { name: /Dinheiro/i });
+    const cellCurrency = await screen.findByRole('cell', { name: /USD/i });
+
+    expect(cellDescription).toBeInTheDocument();
+    expect(cellTag).toBeInTheDocument();
+    expect(cellValue).toBeInTheDocument();
+    expect(cellMethod).toBeInTheDocument();
+    expect(cellCurrency).toBeInTheDocument();
+
+    userEvent.click(buttonEditar);
+    const buttonEditarDespesa = screen.getByRole('button', { name: /Editar Despesa/i });
+    expect(buttonEditarDespesa).toBeVisible();
+
+    userEvent.type(fieldDescription, 'shopping');
+    userEvent.click(buttonEditarDespesa);
+    const newCellDescription = await screen.findByRole('cell', { name: /shopping/i });
+    // console.log(cellDescription);
+    expect(newCellDescription).toBeInTheDocument();
+    waitFor(() => {
+      expect(cellDescription).not.toBeInTheDocument();
+    });
+
+    userEvent.click(buttonExcluir);
+
+    expect(newCellDescription).not.toBeInTheDocument();
+    expect(cellTag).not.toBeInTheDocument();
+    expect(cellValue).not.toBeInTheDocument();
+    expect(cellMethod).not.toBeInTheDocument();
+    expect(cellCurrency).not.toBeInTheDocument();
   });
 });
-// test('testa se os campos do formulario são renderizados', () => {
-//     renderWithRouterAndRedux(<WalletForm />);
-//   });

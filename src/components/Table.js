@@ -16,22 +16,16 @@ class Table extends Component {
 
   deleteExpense = (id) => {
     const { dispatch } = this.props;
-    // console.log(id);
-    // console.log('clicou no delete');
     dispatch(delExpense(id));
   };
 
   editExpense = (id) => {
     const { dispatch } = this.props;
-    // console.log(id);
-    // console.log('clicou no edit', editor);
     dispatch(requestEdit(id));
-    // console.log('id', id, 'idToEdit', idToEdit, 'editor', editor);
   };
 
   render() {
     const { expenses } = this.props;
-    // console.log(expenses);
     return (
       <div className="tableComponent">
         <table>
