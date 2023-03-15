@@ -22,21 +22,13 @@ class WalletForm extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    // console.log(dispatch);
-    // listaDeMoedas(dispatch);
     dispatch(listaDeMoedas());
-    // exchangeRatesList();
   }
 
   saveInfoExpenses = async (event) => {
     event.preventDefault();
     const { dispatch } = this.props;
-    // const { description } = this.state;
     const exchangeList = await exchangeRatesList();
-    // console.log(exchangeList);
-    // console.log(this.state);
-    // const { ...state } = this.state;
-    // console.log(state);
     const expense = {
       ...this.state,
       exchangeRates: exchangeList,
@@ -47,7 +39,6 @@ class WalletForm extends Component {
       value: '',
       description: '',
     }));
-    // console.log(expense);
   };
 
   editInfoExpenses = (event) => {
@@ -70,8 +61,6 @@ class WalletForm extends Component {
   };
 
   render() {
-    // coinsList();
-    // this.saveInfoExpenses();
     const { description, value, currency, method, tag } = this.state;
     const { currencies, editor } = this.props;
 
@@ -102,7 +91,6 @@ class WalletForm extends Component {
               className="select_tag"
               value={ tag }
             >
-              {/* <option>{ tag }</option> */}
               {
                 tagList.map((cat, index) => (
                   <option
@@ -142,7 +130,6 @@ class WalletForm extends Component {
               className="currency"
               value={ currency }
             >
-              {/* <option>{ currency }</option> */}
               {
                 currencies.map((codeCoin, index) => (
                   <option
@@ -166,7 +153,6 @@ class WalletForm extends Component {
               className="method"
               value={ method }
             >
-              {/* <option>{ method }</option> */}
               <option>Dinheiro</option>
               <option>Cartão de crédito</option>
               <option>Cartão de débito</option>
