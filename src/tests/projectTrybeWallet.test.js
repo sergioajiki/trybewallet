@@ -59,7 +59,11 @@ describe('testa o componete walletForm', () => {
 
   test('testa se os codigos das moedas são carregados corretamente', async () => {
     renderWithRouterAndRedux(<WalletForm />);
+    // waitFor(() => {});
     const fieldCurrency = await screen.findByTestId('currency-input');
+    const selectInput = await screen.findByText('USD');
+
+    expect(selectInput).toBeVisible();
     expect(fieldCurrency).toBeInTheDocument();
   });
 

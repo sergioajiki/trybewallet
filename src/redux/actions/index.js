@@ -42,13 +42,9 @@ export const editExpense = (changes) => ({
 export const listaDeMoedas = () => async (dispatch) => {
   const coins = await getCoin();
   const result = Object.values(coins);
-  // console.log(coins);
-  // console.log('array', result);
   const coinList = result
     .filter((element) => element.codein !== 'BRLT')
     .map((e) => e.code);
-  // console.log(coinList);
-  // console.log(dispatch);
   dispatch(sendCoinListCode(coinList));
 };
 
